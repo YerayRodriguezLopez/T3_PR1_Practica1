@@ -5,7 +5,13 @@ using System.Text;
 
 namespace T3PR1Practica1
 {
-    public class EnergySystem : IEnergyCalculable
+    public abstract class EnergySystem : IEnergyCalculable
     {
+        public string SystemType { get; protected set; }
+        public double GeneratedEnergy { get; protected set; }
+        public DateTime SimulationDate { get; set; }
+
+        public abstract void ConfigureParameters();
+        public abstract void CalculateEnergy();
     }
 }
