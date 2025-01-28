@@ -20,10 +20,15 @@ namespace T3PR1Practica1
         {
             sunHours = Program.RequestValue(EnterSunHours, ErrorSunHours, 1);
         }
+        public void ConfigureParameters(double sunHours)
+        {
+            this.sunHours = sunHours;
+        }
 
-        public override void CalculateEnergy()
+        public override double CalculateEnergy()
         {
             GeneratedEnergy = sunHours * 1.5;
+            return GeneratedEnergy;
         }
     }
 }
