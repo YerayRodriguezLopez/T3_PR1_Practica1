@@ -19,7 +19,7 @@ namespace T3PR1Practica1
 
         public override void ConfigureParameters()
         {
-            waterFlow = Program.RequestValue(EnterWaterFlow, ErrorWaterFlow, 20);
+            waterFlow = HelperClass.RequestValue(EnterWaterFlow, ErrorWaterFlow, 20);
         }
 
         public void ConfigureParameters(double waterFlow)

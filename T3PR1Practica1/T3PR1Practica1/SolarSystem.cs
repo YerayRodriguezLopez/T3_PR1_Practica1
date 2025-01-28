@@ -18,7 +18,7 @@ namespace T3PR1Practica1
 
         public override void ConfigureParameters()
         {
-            sunHours = Program.RequestValue(EnterSunHours, ErrorSunHours, 1);
+            sunHours = HelperClass.RequestValue(EnterSunHours, ErrorSunHours, 1);
         }
         public void ConfigureParameters(double sunHours)
         {
