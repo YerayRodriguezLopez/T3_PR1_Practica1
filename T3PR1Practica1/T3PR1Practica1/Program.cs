@@ -67,7 +67,7 @@ namespace T3PR1Practica1
 
         private static void ConfigureMaxSimulations()
         {
-            Simulations = new EnergySystem[(int)RequestValue(EnterMaxSimulations, "La capacitat ha de ser un número positiu. Torna a provar-ho.", 0)];
+            Simulations = new EnergySystem[(int)HelperClass.RequestValue(EnterMaxSimulations, "La capacitat ha de ser un número positiu. Torna a provar-ho.", 0)];
         }
 
         private static void StartSimulation()
