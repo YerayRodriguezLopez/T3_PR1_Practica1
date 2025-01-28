@@ -1,11 +1,10 @@
-﻿
-namespace T3PR1Practica1
+﻿namespace T3PR1Practica1
 {
-
     public class Program
     {
         private static EnergySystem[] Simulations;
         private static int SimulationIndex = 0;
+
         public const string MenuOption1 = "1. Iniciar simulació";
         public const string MenuOption2 = "2. Veure informe de simulacions";
         public const string MenuOption3 = "3. Sortir";
@@ -19,23 +18,33 @@ namespace T3PR1Practica1
         public const string SystemTypeHydro = "3. Hidroelèctric";
         public const string OptionPrompt = "Opció: ";
         public const string EnterMaxSimulations = "Introdueix el nombre màxim de simulacions: ";
+        public const string PositiveNumberError = "La capacitat ha de ser un número positiu. Torna a provar-ho.";
         public const string EmptyReport = "No hi ha simulacions registrades.";
+        public const string SimulationCompleted = "Simulació completada. Energia generada: {0} unitats.";
+        public const string SimulationReportTitle = "\nInforme de Simulacions:";
+        public const string SimulationReportHeader = "--------------------------------------------------------------";
+        public const string SimulationReportColumns1 = "| {0,-20} | {1,-14} | {2,16:F2} | ";
+        public const string SimulationReportColumns2 = "| {0,-20} | {1,-16} | {2,16:F2} | ";
+        public const string DateColumn = "Data i hora";
+        public const string TypeColumn = "Tipus de Sistema";
+        public const string EnergyColumn = "Energia Generada";
+        public const string MenuTitle = "Menú:";
+
         public static void Main()
         {
             bool flag = false;
 
             while (!flag)
             {
-                
                 DisplayMenu();
-                
+
                 switch (Console.ReadLine())
                 {
                     case "1":
                         Console.Clear();
                         if (Simulations == null)
                         {
-                           ConfigureMaxSimulations();
+                            ConfigureMaxSimulations();
                         }
                         StartSimulation();
                         break;
@@ -58,7 +67,7 @@ namespace T3PR1Practica1
 
         private static void DisplayMenu()
         {
-            Console.WriteLine("Menú:");
+            Console.WriteLine(MenuTitle);
             Console.WriteLine(MenuOption1);
             Console.WriteLine(MenuOption2);
             Console.WriteLine(MenuOption3);
@@ -67,7 +76,7 @@ namespace T3PR1Practica1
 
         private static void ConfigureMaxSimulations()
         {
-            Simulations = new EnergySystem[(int)HelperClass.RequestValue(EnterMaxSimulations, "La capacitat ha de ser un número positiu. Torna a provar-ho.", 0)];
+            Simulations = new EnergySystem[(int)HelperClass.RequestValue(EnterMaxSimulations, PositiveNumberError, 0)];
         }
 
         private static void StartSimulation()
@@ -108,38 +117,36 @@ namespace T3PR1Practica1
                             break;
                     }
                 } while (system == null);
-                
+
                 system.ConfigureParameters();
                 system.CalculateEnergy();
                 system.SimulationDate = DateTime.Now;
                 Simulations[SimulationIndex++] = system;
                 Console.Clear();
-                Console.WriteLine($"Simulació completada. Energia generada: {system.GeneratedEnergy} unitats.");
+                Console.WriteLine(string.Format(SimulationCompleted, system.GeneratedEnergy));
             }
         }
 
         private static void DisplayReport()
         {
-            const string Date = "Data i hora";
-            const string Type = "Tipus de Sistema";
-            const string Energy = "Energia Generada";
+
             if (Simulations == null || Simulations.All(s => s == null))
             {
                 Console.WriteLine(EmptyReport);
             }
             else
             {
-                Console.WriteLine("\nInforme de Simulacions:");
-                Console.WriteLine("--------------------------------------------------------------");
-                Console.WriteLine($"| {Date,-20} | {Type,-14} | {Energy,16:F2} | ");
-                Console.WriteLine("--------------------------------------------------------------");
+                Console.WriteLine(SimulationReportTitle);
+                Console.WriteLine(SimulationReportHeader);
+                Console.WriteLine(string.Format(SimulationReportColumns1, DateColumn, TypeColumn, EnergyColumn));
+                Console.WriteLine(SimulationReportHeader);
 
                 foreach (var simulation in Simulations)
                 {
                     if (simulation != null)
                     {
-                        Console.WriteLine($"| {simulation.SimulationDate,-20} | {simulation.SystemType,-16} | {simulation.GeneratedEnergy,16:F2} | ");
-                        Console.WriteLine("--------------------------------------------------------------");
+                        Console.WriteLine(string.Format(SimulationReportColumns2, simulation.SimulationDate, simulation.SystemType, simulation.GeneratedEnergy));
+                        Console.WriteLine(SimulationReportHeader);
                     }
                 }
             }
