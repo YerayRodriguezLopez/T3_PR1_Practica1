@@ -19,7 +19,7 @@ namespace T3PR1Practica1
 
         public override void ConfigureParameters()
         {
-            windSpeed = Program.RequestValue(EnterWindSpeed, ErrorWindSpeed, 5);
+            windSpeed = HelperClass.RequestValue(EnterWindSpeed, ErrorWindSpeed, 5);
         }
 
         public void ConfigureParameters(double windSpeed)
