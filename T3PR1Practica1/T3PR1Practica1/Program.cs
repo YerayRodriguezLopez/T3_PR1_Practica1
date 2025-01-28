@@ -22,9 +22,9 @@ namespace T3PR1Practica1
         public const string EmptyReport = "No hi ha simulacions registrades.";
         public static void Main()
         {
-            bool exit = false;
+            bool flag = false;
 
-            while (!exit)
+            while (!flag)
             {
                 
                 DisplayMenu();
@@ -46,7 +46,7 @@ namespace T3PR1Practica1
                     case "3":
                         Console.Clear();
                         Console.WriteLine(Exiting);
-                        exit = true;
+                        flag = true;
                         break;
                     default:
                         Console.Clear();
@@ -58,7 +58,7 @@ namespace T3PR1Practica1
 
         private static void DisplayMenu()
         {
-            Console.WriteLine("\nMenú:");
+            Console.WriteLine("Menú:");
             Console.WriteLine(MenuOption1);
             Console.WriteLine(MenuOption2);
             Console.WriteLine(MenuOption3);
@@ -85,28 +85,30 @@ namespace T3PR1Practica1
                 Console.WriteLine(SystemTypeWind);
                 Console.WriteLine(SystemTypeHydro);
                 Console.Write(OptionPrompt);
+                EnergySystem system = null;
 
-                EnergySystem system;
-
-                switch (Console.ReadLine())
+                do
                 {
-                    case "1":
-                        Console.Clear();
-                        system = new SolarSystem();
-                        break;
-                    case "2":
-                        Console.Clear();
-                        system = new WindSystem();
-                        break;
-                    case "3":
-                        Console.Clear();
-                        system = new HydroelectricSystem();
-                        break;
-                    default:
-                        Console.WriteLine(InvalidOption);
-                        return;
-                }
-
+                    switch (Console.ReadLine())
+                    {
+                        case "1":
+                            Console.Clear();
+                            system = new SolarSystem();
+                            break;
+                        case "2":
+                            Console.Clear();
+                            system = new WindSystem();
+                            break;
+                        case "3":
+                            Console.Clear();
+                            system = new HydroelectricSystem();
+                            break;
+                        default:
+                            Console.WriteLine(InvalidOption);
+                            break;
+                    }
+                } while (system == null);
+                
                 system.ConfigureParameters();
                 system.CalculateEnergy();
                 system.SimulationDate = DateTime.Now;
