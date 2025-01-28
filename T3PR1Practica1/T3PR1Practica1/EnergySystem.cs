@@ -12,6 +12,6 @@ namespace T3PR1Practica1
         public DateTime SimulationDate { get; set; }
 
         public abstract void ConfigureParameters();
-        public abstract void CalculateEnergy();
+        public abstract double CalculateEnergy();
     }
 }

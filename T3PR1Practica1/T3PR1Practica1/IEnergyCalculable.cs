@@ -8,6 +8,6 @@ namespace T3PR1Practica1
     public interface IEnergyCalculable
     {
         public void ConfigureParameters();
-        public void CalculateEnergy();
+        public double CalculateEnergy();
     }
 }

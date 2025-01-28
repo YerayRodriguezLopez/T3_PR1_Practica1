@@ -22,9 +22,15 @@ namespace T3PR1Practica1
             waterFlow = Program.RequestValue(EnterWaterFlow, ErrorWaterFlow, 20);
         }
 
-        public override void CalculateEnergy()
+        public void ConfigureParameters(double waterFlow)
+        {
+            this.waterFlow = waterFlow;
+        }
+
+        public override double CalculateEnergy()
         {
             GeneratedEnergy = waterFlow * 9.8 * 0.8;
+            return GeneratedEnergy;
         }
     }
 }

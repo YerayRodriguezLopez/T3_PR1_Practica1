@@ -22,9 +22,15 @@ namespace T3PR1Practica1
             windSpeed = Program.RequestValue(EnterWindSpeed, ErrorWindSpeed, 5);
         }
 
-        public override void CalculateEnergy()
+        public void ConfigureParameters(double windSpeed)
+        {
+            this.windSpeed = windSpeed;
+        }
+
+        public override double CalculateEnergy()
         {
             GeneratedEnergy = Math.Pow(windSpeed, 3) * 0.2;
+            return GeneratedEnergy;
         }
     }
 }
