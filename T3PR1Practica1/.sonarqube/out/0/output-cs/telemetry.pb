@@ -1,0 +1,1 @@
+€RjC:\Users\isard\Documents\Programacion\T3_PR1_Practica1\T3PR1Practica1\T3PR1Practica1\T3PR1Practica1.csproj¢net8.0òCSharp12
